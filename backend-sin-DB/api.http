@@ -15,7 +15,7 @@ Content-type: application/json
 
 {
     "title" : "los simuladoress2",
-    "year" : 2004,
+    "year" : 2003,
     "director": "Francis Ford Coppolaa",
     "duration" : 173,
     "poster": "https://brattlefilm.org/movies/the-godfather/",
@@ -27,6 +27,9 @@ PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
 Content-type: application/json
 
 {
-    "year" : 2009
+    "year" : 2001
     
 }
+
+### Eliminar una película
+DELETE http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
