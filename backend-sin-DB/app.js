@@ -97,11 +97,11 @@ app.patch("/movies/:id", (req, res) => {
 
 app.delete("/movies/:id", (req, res) => {
   const { id } = req.params;
-  const movieIndex = movies.findIndex((movie) => movie.id === id);
+  const movieIndex = movies.findIndex((movie) => movie.id === id); // findIndex() devuelve el índice del primer elemento que cumple con la condición, o -1 si no se encuentra ningún elemento que cumpla con la condición. En este caso, estamos buscando el índice de la película con el id que nos llega por params.
   if (movieIndex === -1) {
     return res.status(404).json({ message: "Película no encontrada" });
   }
-  movies.splice(movieIndex, 1);
+  movies.splice(movieIndex, 1); //Andá a la posición 2 y borrá 1 elemento". Para eso guardamos ese número en movieIndex
   res.json({ message: "Película eliminada correctamente" });
 });
 
