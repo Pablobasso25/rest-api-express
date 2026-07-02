@@ -1,5 +1,6 @@
 const express = require("express"); // commonJS
 const crypto = require("node:crypto"); // para generar id de una forma nativa con node, sin instalar nada
+const cors = require("cors");
 const movies = require("./movies.json");
 const { validateMovie, validateMoviePatch } = require("./schemas/movies");
 
@@ -7,6 +8,23 @@ const app = express();
 
 //middleware nativo de express que me permite leer el body que viene junto a la request (envia el usuario en una peticion post por ejempo)
 app.use(express.json());
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const ACCEPTED_ORIGINS = [
+        "http://localhost:8080",
+        "http://localhost:1234",
+        "https://movies.com",
+        "https://mipagina.com",
+      ];
+      if (ACCEPTED_ORIGINS.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("No permitido"));
+      }
+    },
+  }),
+);
 
 app.disable("x-powered-by"); // deshabilitar el header x-powered-by : express
 
@@ -75,6 +93,16 @@ app.patch("/movies/:id", (req, res) => {
   movies[movieIndex] = updatedMovie;
   // enviamos la pelicula actualizada al frontend
   res.json(updatedMovie);
+});
+
+app.delete("/movies/:id", (req, res) => {
+  const { id } = req.params;
+  const movieIndex = movies.findIndex((movie) => movie.id === id);
+  if (movieIndex === -1) {
+    return res.status(404).json({ message: "Película no encontrada" });
+  }
+  movies.splice(movieIndex, 1);
+  res.json({ message: "Película eliminada correctamente" });
 });
 
 const PORT = process.env.PORT ?? 1234;
