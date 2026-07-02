@@ -1,4 +1,4 @@
-const z = require("zod");
+import z from "zod";
 
 const movieSchema = z.object({
   title: z.string({
@@ -42,16 +42,11 @@ const movieSchema = z.object({
 });
 
 // valida todo el objeto que le pasamos y nos devuelve un objeto con la propiedad data y error, si es que hay un error de validacion
-function validateMovie(object) {
+export function validateMovie(object) {
   return movieSchema.safeParse(object);
 }
 
 // partial() nos permite validar solo los campos que le pasamos, es decir, si le pasamos un objeto con solo el campo title, nos va a validar solo ese campo y no nos va a dar error por los demás campos que no le pasamos
-function validateMoviePatch(object) {
+export function validateMoviePatch(object) {
   return movieSchema.partial().safeParse(object);
 }
-
-module.exports = {
-  validateMovie,
-  validateMoviePatch,
-};

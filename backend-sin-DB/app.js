@@ -1,13 +1,13 @@
-const express = require("express"); // commonJS
-const crypto = require("node:crypto"); // para generar id de una forma nativa con node, sin instalar nada
-const cors = require("cors");
-const movies = require("./movies.json");
-const { validateMovie, validateMoviePatch } = require("./schemas/movies");
+import express, { json } from "express"; // commonJS
+import { randomUUID } from "node:crypto"; // para generar id de una forma nativa con node, sin instalar nada
+import cors from "cors";
+import movies from "./movies.json" with { type: "json" };
+import { validateMovie, validateMoviePatch } from "./schemas/movies.js";
 
 const app = express();
 
 //middleware nativo de express que me permite leer el body que viene junto a la request (envia el usuario en una peticion post por ejempo)
-app.use(express.json());
+app.use(json());
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -64,7 +64,7 @@ app.post("/movies", (req, res) => {
   }
   // con los datos que envia el frontend creamos una nueva pelicula y la guardamos en base de datos (en este caso en un array que simula una base de datos)
   const newMovie = {
-    id: crypto.randomUUID(), //crea el id de forma nativa uuid v4
+    id: randomUUID(), //crea el id de forma nativa uuid v4
     ...result.data,
   };
 
@@ -80,7 +80,7 @@ app.patch("/movies/:id", (req, res) => {
   }
 
   const { id } = req.params;
-  const movieIndex = movies.findIndex((movie) => movie.id === id);
+  const movieIndex = findIndex((movie) => movie.id === id);
   if (movieIndex === -1) {
     return res.status(404).json({ message: "Película no encontrada" });
   }
