@@ -1,4 +1,4 @@
-import movies from "../movies.json" with { type: "json" };
+import movies from "../../movies.json" with { type: "json" };
 import { randomUUID } from "node:crypto"; // para generar id de una forma nativa con node, sin instalar nada
 
 export class MovieModel {
@@ -16,7 +16,7 @@ export class MovieModel {
     const movie = movies.find((movie) => movie.id === id);
     return movie;
   }
-  static async create(input) {
+  static async create({ input }) {
     // con los datos que envia el frontend creamos una nueva pelicula y la guardamos en base de datos (en este caso en un array que simula una base de datos)
     const newMovie = {
       id: randomUUID(), //crea el id de forma nativa uuid v4
