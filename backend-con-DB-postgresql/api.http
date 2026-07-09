@@ -14,7 +14,7 @@ POST http://localhost:1234/movies
 Content-type: application/json
 
 {
-    "title" : "los simuladoress2",
+    "title" : "los simuladoress",
     "year" : 2004,
     "director": "Francis Ford Coppolaa",
     "duration" : 173,
