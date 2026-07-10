@@ -1,0 +1,35 @@
+### Recuperar todas las películas
+GET http://localhost:1234/movies
+
+### Rescuperar una película por id
+GET http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+### Recuperar todas las películas por un género
+GET http://localhost:1234/movies?genre=action&crime
+
+
+
+### Crear una película
+POST http://localhost:1234/movies
+Content-type: application/json
+
+{
+    "title" : "los simuladoress",
+    "year" : 2004,
+    "director": "Francis Ford Coppolaa",
+    "duration" : 173,
+    "poster": "https://brattlefilm.org/movies/the-godfather/",
+    "genre" : [ "Drama"]
+}
+
+### Actualizar una película
+PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-type: application/json
+
+{
+    "year" : 2009
+    
+}
+
+### Eliminar una película
+DELETE http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
