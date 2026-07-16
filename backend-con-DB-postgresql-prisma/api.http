@@ -2,10 +2,10 @@
 GET http://localhost:1234/movies
 
 ### Rescuperar una película por id
-GET http://localhost:1234/movies/d5df97e5-cb1f-4702-aca6-7a978ab3f7e7
+GET http://localhost:1234/movies/6a564ebf350c0c09224a6bc
 
 ### Recuperar todas las películas por un género
-GET http://localhost:1234/movies?genre=Romance
+GET http://localhost:1234/movies?genre=Action
 
 
 
@@ -14,7 +14,7 @@ POST http://localhost:1234/movies
 Content-type: application/json
 
 {
-    "title" : "lost5",
+    "title" : "lost9",
     "year" : 2022,
     "director": "Francis Ford Coppolaa",
     "duration" : 171,
@@ -23,15 +23,15 @@ Content-type: application/json
 }
 
 ### Actualizar una película
-PATCH http://localhost:1234/movies/e3b4c2da-bbd3-47a2-b3f4-ca370e829f79
+PATCH http://localhost:1234/movies/6a564ebf350c0c09224a6bc1
 Content-type: application/json
 
 {
-    "year" : 1962
+    "year" : 2011
     
 
     
 }
 
 ### Eliminar una película
-DELETE http://localhost:1234/movies/c8a7d63f-3b04-44d3-9d95-8782fd7dcfaf
+DELETE http://localhost:1234/movies/6a564ebf350c0c09224a6bc1
