@@ -1,11 +1,16 @@
 import z from "zod";
 
 const movieSchema = z.object({
-  title: z.string({
-    invalid_type_error: "El título debe ser un string",
-    required_error: "El título es obligatorio",
-  }),
-  year: z.number().int().min(1900).max(2024),
+  title: z
+    .string({
+      invalid_type_error: "El título debe ser un string",
+      required_error: "El título es obligatorio",
+    })
+    .min(1, { message: "El título debe tener al menos 1 caracter" })
+    .max(100, { message: "El título debe tener como máximo 100 caracteres" })
+    .trim(),
+
+  year: z.number().int().min(1900).max(2030),
   director: z.string(),
   duration: z.number().int().positive(),
   rate: z.number().int().min(0).max(10).default(5),
