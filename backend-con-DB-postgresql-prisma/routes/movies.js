@@ -4,6 +4,7 @@ import { MovieController } from "../controllers/movies.js";
 export const createMovieRouter = ({ movieModel }) => {
   const moviesRouter = Router();
 
+  // 1. Creamos una INSTANCIA del controlador pasándole el modelo que queremos usar
   const movieController = new MovieController({ movieModel });
 
   moviesRouter.get("/", movieController.getAll);
