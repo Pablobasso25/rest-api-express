@@ -5,6 +5,7 @@ const ACCEPTED_ORIGINS = [
   "http://localhost:1234",
   "https://movies.com",
   "https://mipagina.com",
+  "http://localhost:5173",
 ];
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => {
   return cors({
@@ -12,7 +13,11 @@ export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) => {
       if (acceptedOrigins.includes(origin) || !origin) {
         callback(null, true);
       } else {
-        callback(new Error("No permitido"));
+        callback(
+          new Error(
+            "No permitido porque no esta en la lista de dominios aceptados",
+          ),
+        );
       }
     },
   });
